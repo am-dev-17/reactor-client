@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.greglturnquist.learningspringboot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	compileOnly('org.springframework.boot:spring-boot-starter-amqp')
+//	compileOnly(
+//			'org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+//	compileOnly(
+//			'org.springframework.cloud:spring-cloud-stream-reactive')
+	compileOnly 'org.projectlombok:lombok'
+	compileOnly("org.springframework.boot:spring-boot-devtools")
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+//dependencyManagement {
+//	imports {
+//		maven "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//	}
+//}
